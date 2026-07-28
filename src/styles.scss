@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+    --color-ink: #1b2430;
+    --color-bg: #f4f5f7;
+    --color-surface: #ffffff;
+    --color-border: #e3e6eb;
+
+    --color-accent: #c9973f;
+    --color-accent-dark: #a97c2f;
+
+    --color-danger: #d64545;
+    --color-text-muted: #6b7280;
+
+     --radius-md: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
