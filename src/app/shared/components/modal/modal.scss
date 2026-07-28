@@ -1,0 +1,13 @@
+.backdrop {
+  position: fixed; inset: 0; background: rgba(27,36,48,0.5);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000; padding: 16px;
+}
+.dialog {
+  background: #fff; border-radius: 14px; width: 100%; max-width: 480px;
+  max-height: 90vh; overflow-y: auto;
+  &__header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid var(--color-border); }
+  &__close { border: none; background: none; font-size: 1.1rem; cursor: pointer; }
+  &__body { padding: 20px; }
+  &__footer { display: flex; justify-content: flex-end; gap: 10px; padding: 16px 20px; border-top: 1px solid var(--color-border); }
+}

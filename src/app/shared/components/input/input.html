@@ -1,0 +1,24 @@
+<div class="field">
+  @if (label()) {
+    <label class="field__label" [for]="inputId">
+      {{ label() }}
+      @if (required()) { <span class="field__required">*</span> }
+    </label>
+  }
+
+  <input
+    [id]="inputId"
+    class="field__control"
+    [class.field__control--error]="errorMessage()"
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [disabled]="disabled"
+    [value]="value"
+    (input)="onInput($event)"
+    (blur)="onTouched()"
+  />
+
+  @if (errorMessage()) {
+    <p class="field__error">{{ errorMessage() }}</p>
+  }
+</div>

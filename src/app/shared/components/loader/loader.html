@@ -1,0 +1,4 @@
+<div class="loader-wrap" [class.loader-wrap--full]="fullPage()">
+  <div class="spinner" [class]="'spinner--' + size()"></div>
+  @if (text()) { <p class="loader-text">{{ text() }}</p> }
+</div>
