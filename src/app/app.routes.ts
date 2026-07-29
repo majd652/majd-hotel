@@ -1,3 +1,5 @@
 import { Routes } from '@angular/router';
-
-export const routes: Routes = [];
+import {Loader} from '../app/shared/components/loader/loader';
+export const routes: Routes = [
+    {path: '#', component: Loader, title: 'Loader'}
+];
