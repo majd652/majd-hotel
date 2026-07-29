@@ -1,0 +1,37 @@
+<div class="table-wrap">
+  @if (loading()) {
+    <app-loader text="Loading data..." />
+  } @else if (data().length === 0) {
+    <app-empty-state [message]="emptyMessage()" />
+  } @else {
+    <table class="table">
+      <thead>
+        <tr>
+          @for (col of columns(); track col.key) {
+            <th [class.sortable]="col.sortable" (click)="toggleSort(col)">
+              {{ col.header }}
+              @if (col.sortable && sortKey === col.key) {
+                <span>{{ sortAsc ? '▲' : '▼' }}</span>
+              }
+            </th>
+          }
+          @if (rowActions()) { <th>Actions</th> }
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of sortedData; track row) {
+          <tr>
+            @for (col of columns(); track col.key) {
+              <td>{{ row[col.key] }}</td>
+            }
+            @if (rowActions()) {
+              <td>
+                <ng-container *ngTemplateOutlet="rowActions()!; context: { $implicit: row }" />
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>

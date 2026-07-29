@@ -1,0 +1,5 @@
+.empty {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 48px 20px; color: var(--color-text-muted); text-align: center;
+  &__icon { font-size: 2rem; margin-bottom: 8px; }
+}

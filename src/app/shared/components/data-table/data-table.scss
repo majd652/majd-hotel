@@ -1,0 +1,8 @@
+.table-wrap { overflow-x: auto; background: #fff; border-radius: 12px; border: 1px solid var(--color-border); }
+.table {
+  width: 100%; border-collapse: collapse; font-size: 0.875rem;
+  th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--color-border); }
+  th { font-weight: 600; color: var(--color-text-muted); background: var(--color-bg); white-space: nowrap; }
+  th.sortable { cursor: pointer; user-select: none; }
+  tbody tr:hover { background: var(--color-bg); }
+}

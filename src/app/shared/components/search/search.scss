@@ -1,0 +1,6 @@
+.search {
+  display: flex; align-items: center; gap: 8px;
+  background: #fff; border: 1px solid var(--color-border); border-radius: 10px;
+  padding: 8px 12px; max-width: 320px;
+  input { border: none; outline: none; width: 100%; font-size: 0.875rem; font-family: inherit; }
+}
