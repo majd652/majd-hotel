@@ -1,0 +1,24 @@
+{
+  "users": [
+    { "id": 1, "name": "Majd", "email": "admin@majdhotel.com", "password": "Admin@123", "role": "admin" },
+    { "id": 2, "name": "Sara Manager", "email": "manager@majdhotel.com", "password": "Manager@123", "role": "manager" }
+  ],
+  "hotels": [
+    { "id": 1, "name": "Rotterdam Harbor Hotel", "city": "Rotterdam", "address": "Wilhelminakade 40", "rating": 5, "totalRooms": 4, "createdAt": "2026-01-10T09:00:00.000Z" },
+    { "id": 2, "name": "Amsterdam Canal Suites", "city": "Amsterdam", "address": "Prinsengracht 220", "rating": 4, "totalRooms": 4, "createdAt": "2026-02-05T09:00:00.000Z" },
+    { "id": 3, "name": "Utrecht Central Inn", "city": "Utrecht", "address": "Vredenburg 8", "rating": 3, "totalRooms": 3, "createdAt": "2026-02-20T09:00:00.000Z" }
+  ],
+  "rooms": [
+    { "id": 1, "hotelId": 1, "roomNumber": "101", "type": "Single", "capacity": 1, "price": 89, "available": true },
+    { "id": 2, "hotelId": 1, "roomNumber": "102", "type": "Double", "capacity": 2, "price": 129, "available": true },
+    { "id": 3, "hotelId": 1, "roomNumber": "201", "type": "Suite", "capacity": 4, "price": 259, "available": false },
+    { "id": 4, "hotelId": 2, "roomNumber": "A1", "type": "Double", "capacity": 2, "price": 149, "available": true },
+    { "id": 5, "hotelId": 2, "roomNumber": "A2", "type": "Family", "capacity": 5, "price": 249, "available": true },
+    { "id": 6, "hotelId": 3, "roomNumber": "301", "type": "Single", "capacity": 1, "price": 69, "available": true }
+  ],
+  "bookings": [
+    { "id": 1, "customerName": "Omar Haddad", "customerEmail": "omar.h@example.com", "hotelId": 1, "roomId": 2, "checkIn": "2026-08-02", "checkOut": "2026-08-05", "nights": 3, "pricePerNight": 129, "taxAmount": 38.7, "discountPercent": 0, "totalAmount": 425.7, "status": "Confirmed", "createdAt": "2026-07-15T10:20:00.000Z" },
+    { "id": 2, "customerName": "Lina Kareem", "customerEmail": "lina.k@example.com", "hotelId": 2, "roomId": 5, "checkIn": "2026-08-10", "checkOut": "2026-08-14", "nights": 4, "pricePerNight": 249, "taxAmount": 99.6, "discountPercent": 10, "totalAmount": 985.6, "status": "Pending", "createdAt": "2026-07-18T14:05:00.000Z" },
+    { "id": 3, "customerName": "Yousef Nasser", "customerEmail": "yousef.n@example.com", "hotelId": 3, "roomId": 6, "checkIn": "2026-07-20", "checkOut": "2026-07-22", "nights": 2, "pricePerNight": 69, "taxAmount": 13.8, "discountPercent": 0, "totalAmount": 152.8, "status": "Completed", "createdAt": "2026-07-05T09:40:00.000Z" }
+  ]
+}
