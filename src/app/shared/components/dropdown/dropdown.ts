@@ -19,7 +19,7 @@ export class Dropdown implements ControlValueAccessor {
   readonly selectId = `app-dropdown-${nextId++}`;
 
   label = ngInput<string>('');
-  placeholder = ngInput<string>('اختر...');
+  placeholder = ngInput<string>('Select...');
   options = ngInput<SelectOption[]>([]);
   errorMessage = ngInput<string>('');
 

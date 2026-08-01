@@ -24,6 +24,8 @@ export class Input implements ControlValueAccessor {
   placeholder = ngInput<string>('');
   errorMessage = ngInput<string>('');
   required = ngInput(false);
+  min = ngInput<number | string | null>(null);
+  max = ngInput<number | string | null>(null);
 
   value = '';
   disabled = false;

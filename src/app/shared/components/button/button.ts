@@ -15,7 +15,7 @@ export class Button {
   type = input<'button' | 'submit'>('button');
   disabled = input(false);
   loading = input(false);
-
+  fullWidth = input(false);
   clicked = output<MouseEvent>();
 
   handleClick(event: MouseEvent): void {

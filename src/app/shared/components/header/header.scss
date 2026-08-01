@@ -1,0 +1,10 @@
+.topbar {
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; background: #fff; border-bottom: 1px solid var(--color-border);
+  &__user { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; }
+  &__role { text-transform: capitalize; color: var(--color-text-muted); }
+  &__logout {
+    border: 1px solid var(--color-border); background: none; padding: 6px 14px;
+    border-radius: 8px; cursor: pointer; font-size: 0.8rem;
+  }
+}

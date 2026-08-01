@@ -24,3 +24,6 @@ body {
   background: var(--color-bg);
   color: var(--color-ink);
 }
+.page { padding: 24px; max-width: 1400px; margin: 0 auto; }
+.page-header { margin-bottom: 20px; }
+.page-header__subtitle { color: var(--color-text-muted); font-size: 0.9rem; margin-top: 4px; }

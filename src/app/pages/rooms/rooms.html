@@ -1,0 +1,52 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Rooms</h1>
+      <p class="page-header__subtitle">Manage rooms across all hotels.</p>
+    </div>
+    <app-button (clicked)="openAddModal()">+ Add Room</app-button>
+  </div>
+
+  <div class="toolbar">
+    <app-search placeholder="Search by room number or hotel..." [(value)]="searchTerm" />
+  </div>
+
+  <app-data-table [columns]="columns" [data]="filteredRooms()" [loading]="loading()" emptyMessage="No rooms yet.">
+    <ng-template #rowActions let-room>
+      <app-button variant="ghost" size="sm" (clicked)="openEditModal(room)">Edit</app-button>
+      <app-button variant="danger" size="sm" (clicked)="askDelete(room)">Delete</app-button>
+    </ng-template>
+  </app-data-table>
+</div>
+
+<app-modal [open]="formModalOpen()" [title]="editingId() ? 'Edit Room' : 'Add Room'" (closed)="formModalOpen.set(false)">
+  <form [formGroup]="form" class="form-grid">
+    <app-dropdown label="Hotel" [options]="hotelOptions()" formControlName="hotelId"
+      [errorMessage]="form.controls.hotelId.touched && form.controls.hotelId.invalid ? 'Select a hotel.' : ''" />
+    <app-input label="Room Number" formControlName="roomNumber" [required]="true"
+      [errorMessage]="form.controls.roomNumber.touched && form.controls.roomNumber.invalid ? 'Room number is required.' : ''" />
+    <app-dropdown label="Room Type" [options]="typeOptions" formControlName="type" />
+    <app-input label="Capacity" type="number" [min]="1" formControlName="capacity" [required]="true"
+      [errorMessage]="form.controls.capacity.touched && form.controls.capacity.invalid ? 'Must be at least 1.' : ''" />
+    <app-input label="Price per Night (€)" type="number" [min]="1" formControlName="price" [required]="true"
+      [errorMessage]="form.controls.price.touched && form.controls.price.invalid ? 'Must be at least 1.' : ''" />
+    <app-dropdown label="Available"
+      [options]="[{ label: 'Yes', value: 'true' }, { label: 'No', value: 'false' }]"
+      [ngModel]="form.controls.available.value ? 'true' : 'false'"
+      (ngModelChange)="form.controls.available.setValue($event === 'true')"
+      [ngModelOptions]="{ standalone: true }" />
+  </form>
+
+  <div footer>
+    <app-button variant="secondary" (clicked)="formModalOpen.set(false)">Cancel</app-button>
+    <app-button (clicked)="saveRoom()" [loading]="saving()">Save</app-button>
+  </div>
+</app-modal>
+
+<app-modal [open]="confirmModalOpen()" title="Delete Room" (closed)="confirmModalOpen.set(false)">
+  <p>Delete room <strong>{{ roomToDelete()?.roomNumber }}</strong>? This cannot be undone.</p>
+  <div footer>
+    <app-button variant="secondary" (clicked)="confirmModalOpen.set(false)">Cancel</app-button>
+    <app-button variant="danger" (clicked)="confirmDelete()">Delete</app-button>
+  </div>
+</app-modal>

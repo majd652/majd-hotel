@@ -1,0 +1,40 @@
+<div class="login-page">
+  <div class="login-card">
+    <h1 class="login-card__title">{{ appName }}</h1>
+    <p class="login-card__subtitle">Sign in to manage your hotels</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <app-input
+        label="Email"
+        type="email"
+        placeholder="you@example.com"
+        formControlName="email"
+        [errorMessage]="emailError"
+        [required]="true"
+      />
+
+      <app-input
+        label="Password"
+        type="password"
+        placeholder="••••••••"
+        formControlName="password"
+        [errorMessage]="passwordError"
+        [required]="true"
+      />
+
+      @if (errorMessage()) {
+        <p class="login-card__error">{{ errorMessage() }}</p>
+      }
+
+      <app-button type="submit" [fullWidth]="true" [loading]="loading()">
+        Sign In
+      </app-button>
+    </form>
+
+    <div class="login-card__hint">
+      <strong>Demo accounts:</strong><br />
+      admin&#64;majdhotel.com / Admin&#64;123<br />
+      manager&#64;majdhotel.com / Manager&#64;123
+    </div>
+  </div>
+</div>

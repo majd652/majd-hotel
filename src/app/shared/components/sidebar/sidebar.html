@@ -1,0 +1,11 @@
+<aside class="sidebar">
+  <div class="sidebar__logo">{{ appName }}</div>
+  <nav class="sidebar__nav">
+    @for (item of visibleItems; track item.path) {
+      <a [routerLink]="item.path" routerLinkActive="active" class="sidebar__link">
+        <span>{{ item.icon }}</span>
+        <span>{{ item.label }}</span>
+      </a>
+    }
+  </nav>
+</aside>

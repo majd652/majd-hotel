@@ -1,0 +1,48 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Hotels</h1>
+      <p class="page-header__subtitle">Manage your hotel properties.</p>
+    </div>
+    <app-button (clicked)="openAddModal()">+ Add Hotel</app-button>
+  </div>
+
+  <div class="toolbar">
+    <app-search placeholder="Search by name or city..." [(value)]="searchTerm" />
+  </div>
+
+  <app-data-table [columns]="columns" [data]="filteredHotels()" [loading]="loading()" emptyMessage="No hotels yet. Add your first one.">
+    <ng-template #rowActions let-hotel>
+      <app-button variant="ghost" size="sm" (clicked)="openEditModal(hotel)">Edit</app-button>
+      <app-button variant="danger" size="sm" (clicked)="askDelete(hotel)">Delete</app-button>
+    </ng-template>
+  </app-data-table>
+</div>
+
+<app-modal [open]="formModalOpen()" [title]="editingId() ? 'Edit Hotel' : 'Add Hotel'" (closed)="formModalOpen.set(false)">
+  <form [formGroup]="form" class="form-grid">
+    <app-input label="Hotel Name" formControlName="name" [required]="true"
+      [errorMessage]="form.controls.name.touched && form.controls.name.invalid ? 'Name must be at least 2 characters.' : ''" />
+    <app-input label="City" formControlName="city" [required]="true"
+      [errorMessage]="form.controls.city.touched && form.controls.city.invalid ? 'City is required.' : ''" />
+    <app-input label="Address" formControlName="address" [required]="true"
+      [errorMessage]="form.controls.address.touched && form.controls.address.invalid ? 'Address is required.' : ''" />
+    <app-input label="Rating (1-5)" type="number" formControlName="rating" [required]="true" [min]="1" [max]="5"
+      [errorMessage]="form.controls.rating.touched && form.controls.rating.invalid ? 'Rating must be 1-5.' : ''" />
+    <app-input label="Total Rooms" type="number" formControlName="totalRooms" [required]="true" [min]="1"
+      [errorMessage]="form.controls.totalRooms.touched && form.controls.totalRooms.invalid ? 'Must be at least 1.' : ''" />
+  </form>
+
+  <div footer>
+    <app-button variant="secondary" (clicked)="formModalOpen.set(false)">Cancel</app-button>
+    <app-button (clicked)="saveHotel()" [loading]="saving()">Save</app-button>
+  </div>
+</app-modal>
+
+<app-modal [open]="confirmModalOpen()" title="Delete Hotel" (closed)="confirmModalOpen.set(false)">
+  <p>Are you sure you want to delete <strong>{{ hotelToDelete()?.name }}</strong>? This cannot be undone.</p>
+  <div footer>
+    <app-button variant="secondary" (clicked)="confirmModalOpen.set(false)">Cancel</app-button>
+    <app-button variant="danger" (clicked)="confirmDelete()">Delete</app-button>
+  </div>
+</app-modal>

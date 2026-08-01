@@ -1,0 +1,8 @@
+<header class="topbar">
+  <div></div>
+  <div class="topbar__user">
+    <span class="topbar__name">{{ auth.currentUser()?.name }}</span>
+    <span class="topbar__role">{{ auth.currentUser()?.role }}</span>
+    <button class="topbar__logout" (click)="logout()">Logout</button>
+  </div>
+</header>

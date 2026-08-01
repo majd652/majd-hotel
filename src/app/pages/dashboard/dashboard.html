@@ -1,0 +1,19 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Welcome back, {{ auth.currentUser()?.name }}</h1>
+      <p class="page-header__subtitle">Here's what's happening across your hotels.</p>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <app-loader text="Loading dashboard..." />
+  } @else {
+    <div class="cards-grid">
+      <app-dashboard-card label="Total Hotels" [value]="hotels().length" icon="🏨" accent="navy" />
+      <app-dashboard-card label="Total Rooms" [value]="rooms().length" icon="🛏️" accent="gold" />
+      <app-dashboard-card label="Available Rooms" [value]="availableRooms()" icon="✅" accent="teal" />
+      <app-dashboard-card label="Total Revenue" [value]="'€' + totalRevenue().toFixed(2)" icon="💰" accent="danger" />
+    </div>
+  }
+</div>

@@ -11,7 +11,16 @@ export class Modal {
   title = input('');
   closed = output<void>();
 
-  onBackdropClick(): void {
-    this.closed.emit();
+  private mouseDownOnBackdrop = false;
+
+  onBackdropMouseDown(event: MouseEvent): void {
+    this.mouseDownOnBackdrop = event.target === event.currentTarget;
+  }
+
+  onBackdropMouseUp(event: MouseEvent): void {
+    if (this.mouseDownOnBackdrop && event.target === event.currentTarget) {
+      this.closed.emit();
+    }
+    this.mouseDownOnBackdrop = false;
   }
 }
