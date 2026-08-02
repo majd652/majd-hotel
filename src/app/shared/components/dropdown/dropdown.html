@@ -6,7 +6,7 @@
     class="field__control"
     [class.field__control--error]="errorMessage()"
     [disabled]="disabled"
-    [value]="value ?? ''"
+    [value]="currentValue ?? ''"
     (change)="onSelect($event)"
     (blur)="onTouched()"
   >

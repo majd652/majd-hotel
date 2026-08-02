@@ -1,0 +1,8 @@
+.booking-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; align-items: start; }
+.booking-form { padding: 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.booking-summary { padding: 24px; position: sticky; top: 20px; }
+.summary-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.9rem; color: var(--color-text-muted); }
+.summary-row--total { border-top: 1px solid var(--color-border); margin-top: 8px; padding-top: 12px; font-weight: 700; font-size: 1.1rem; color: var(--color-ink); }
+@media (max-width: 800px) {
+  .booking-layout, .booking-form { grid-template-columns: 1fr; }
+}

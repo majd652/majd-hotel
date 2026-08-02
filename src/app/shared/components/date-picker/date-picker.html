@@ -1,0 +1,10 @@
+<div class="field">
+  @if (label()) { <label class="field__label" [for]="inputId">{{ label() }}</label> }
+  <input
+    [id]="inputId" type="date" class="field__control"
+    [class.field__control--error]="errorMessage()"
+    [disabled]="disabled" [value]="value" [min]="min()"
+    (input)="onInput($event)" (blur)="onTouched()"
+  />
+  @if (errorMessage()) { <p class="field__error">{{ errorMessage() }}</p> }
+</div>

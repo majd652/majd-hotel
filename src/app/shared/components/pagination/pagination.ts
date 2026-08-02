@@ -9,7 +9,7 @@ import { Component, computed, input, model } from '@angular/core';
 export class Pagination {
   totalItems = input.required<number>();
   pageSize = input(10);
-  currentPage = model(1); // model = input + output مدموجين
+  currentPage = model(1); // model = input + output 
 
   totalPages = computed(() => Math.max(1, Math.ceil(this.totalItems() / this.pageSize())));
 

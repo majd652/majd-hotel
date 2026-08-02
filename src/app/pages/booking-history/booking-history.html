@@ -1,0 +1,14 @@
+<div class="page">
+  <div class="page-header">
+    <h1>Booking History</h1>
+  </div>
+
+  <div class="toolbar">
+    <app-search placeholder="Search by customer or hotel..." [(value)]="searchTerm" />
+    <app-dropdown placeholder="Filter by status" [options]="statusOptions" [(value)]="statusFilter" />
+  </div>
+
+  <app-data-table [columns]="columns" [data]="pagedRows()" [loading]="loading()" emptyMessage="No bookings found." />
+
+  <app-pagination [totalItems]="filteredRows().length" [pageSize]="pageSize" [(currentPage)]="currentPage" />
+</div>

@@ -27,11 +27,11 @@ export class Input implements ControlValueAccessor {
   min = ngInput<number | string | null>(null);
   max = ngInput<number | string | null>(null);
 
-  value = '';
+  value: string | number = '';
   disabled = false;
 
-  private onChange: (value: string) => void = () => {};
-  onTouched: () => void = () => {};
+  private onChange: (value: string) => void = () => { };
+  onTouched: () => void = () => { };
 
   writeValue(value: string): void {
     this.value = value ?? '';
@@ -47,7 +47,14 @@ export class Input implements ControlValueAccessor {
   }
 
   onInput(event: Event): void {
-    this.value = (event.target as HTMLInputElement).value;
-    this.onChange(this.value); 
+    const raw = (event.target as HTMLInputElement).value;
+    this.value = this.type() === 'number' ? this.parseNumber(raw) : raw;
+    this.onChange(this.value as any);
+  }
+
+  private parseNumber(raw: string): number | string {
+    if (raw === '') return '';
+    const parsed = Number(raw);
+    return isNaN(parsed) ? '' : parsed;
   }
 }

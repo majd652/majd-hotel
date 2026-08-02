@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Booking, BookingFormValue, BookingStatus } from '../../models/booking.model';
-
-const TAX_RATE = 0.1;
+import { calculateBookingSummary } from '../../shared/utils/booking-calculator';
 
 @Injectable({ providedIn: 'root' })
 export class BookingService {
@@ -16,18 +15,14 @@ export class BookingService {
   }
 
   create(payload: BookingFormValue, pricePerNight: number): Observable<Booking> {
-    const nights = this.calculateNights(payload.checkIn, payload.checkOut);
-    const subtotal = nights * pricePerNight;
-    const tax = subtotal * TAX_RATE;
-    const discount = (subtotal * payload.discountPercent) / 100;
-    const total = Math.max(subtotal + tax - discount, 0);
+    const summary = calculateBookingSummary(payload.checkIn, payload.checkOut, pricePerNight, payload.discountPercent);
 
     const body = {
       ...payload,
-      nights,
+      nights: summary.nights,
       pricePerNight,
-      taxAmount: Math.round(tax * 100) / 100,
-      totalAmount: Math.round(total * 100) / 100,
+      taxAmount: summary.tax,
+      totalAmount: summary.total,
       status: 'Pending' as BookingStatus,
       createdAt: new Date().toISOString(),
     };
@@ -40,12 +35,5 @@ export class BookingService {
 
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
-  }
-
-  private calculateNights(checkIn: string, checkOut: string): number {
-    const start = new Date(checkIn).getTime();
-    const end = new Date(checkOut).getTime();
-    if (isNaN(start) || isNaN(end) || end <= start) return 0;
-    return Math.round((end - start) / (1000 * 60 * 60 * 24));
   }
 }

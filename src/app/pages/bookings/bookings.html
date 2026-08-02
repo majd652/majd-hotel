@@ -1,0 +1,33 @@
+<div class="page">
+  <div class="page-header">
+    <h1>New Booking</h1>
+  </div>
+
+  <div class="booking-layout">
+    <form [formGroup]="form" class="card-surface booking-form">
+      <app-input label="Customer Name" formControlName="customerName" [required]="true"
+        [errorMessage]="form.controls.customerName.touched && form.controls.customerName.invalid ? 'Name is required.' : ''" />
+      <app-input label="Customer Email" type="email" formControlName="customerEmail" [required]="true"
+        [errorMessage]="form.controls.customerEmail.touched && form.controls.customerEmail.invalid ? 'Enter a valid email.' : ''" />
+      <app-dropdown label="Hotel" [options]="hotelOptions()" formControlName="hotelId"
+        [errorMessage]="form.controls.hotelId.touched && form.controls.hotelId.invalid ? 'Select a hotel.' : ''" />
+      <app-dropdown label="Room" [options]="availableRoomOptions()" formControlName="roomId"
+        [errorMessage]="form.controls.roomId.touched && form.controls.roomId.invalid ? 'Select a room.' : ''" />
+      <app-date-picker label="Check-in" formControlName="checkIn" [min]="today"
+        [errorMessage]="form.controls.checkIn.touched && form.controls.checkIn.invalid ? 'Check-in date is required.' : ''" />
+      <app-date-picker label="Check-out" formControlName="checkOut" [min]="today"
+        [errorMessage]="form.controls.checkOut.touched && form.controls.checkOut.invalid ? 'Check-out date is required.' : ''" />
+      <app-input label="Discount (%)" type="number" [min]="0" [max]="100" formControlName="discountPercent" />
+    </form>
+
+    <div class="card-surface booking-summary">
+      <h3>Booking Summary</h3>
+      <div class="summary-row"><span>Nights</span><span>{{ summary().nights }}</span></div>
+      <div class="summary-row"><span>Subtotal</span><span>€{{ summary().subtotal.toFixed(2) }}</span></div>
+      <div class="summary-row"><span>Tax (10%)</span><span>€{{ summary().tax.toFixed(2) }}</span></div>
+      <div class="summary-row"><span>Discount</span><span>-€{{ summary().discount.toFixed(2) }}</span></div>
+      <div class="summary-row summary-row--total"><span>Total</span><span>€{{ summary().total.toFixed(2) }}</span></div>
+      <app-button [fullWidth]="true" [loading]="saving()" (clicked)="submit()">Confirm Booking</app-button>
+    </div>
+  </div>
+</div>
