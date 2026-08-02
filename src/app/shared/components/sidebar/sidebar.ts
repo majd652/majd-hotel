@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
 import { APP_NAME } from '../../utils/app-constants';
@@ -19,6 +19,10 @@ interface NavItem {
 export class Sidebar {
   private auth = inject(AuthService);
   readonly appName = APP_NAME;
+
+  open = input(false);
+  linkClicked = output<void>();
+  backdropClicked = output<void>();
 
   private allItems: NavItem[] = [
     { label: 'Dashboard', path: '/dashboard', icon: '📊' },

@@ -1,8 +1,8 @@
 <app-toast-container />
 <div class="shell">
-  <app-sidebar />
+  <app-sidebar [open]="sidebarOpen()" (linkClicked)="closeSidebar()" (backdropClicked)="closeSidebar()" />
   <div class="shell__main">
-    <app-header />
+    <app-header (menuToggle)="toggleSidebar()" />
     <main class="shell__content">
       <router-outlet />
     </main>

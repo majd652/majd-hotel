@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
 
@@ -11,6 +11,8 @@ import { AuthService } from '../../../core/services/auth';
 export class Header {
   auth = inject(AuthService);
   private router = inject(Router);
+
+  menuToggle = output<void>();
 
   logout(): void {
     this.auth.logout();

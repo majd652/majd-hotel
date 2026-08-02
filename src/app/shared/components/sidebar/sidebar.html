@@ -1,4 +1,8 @@
-<aside class="sidebar">
+@if (open()) {
+  <div class="sidebar-backdrop" (click)="backdropClicked.emit()"></div>
+}
+
+<aside class="sidebar" [class.sidebar--open]="open()">
   <div class="sidebar__logo">{{ appName }}</div>
   <nav class="sidebar__nav">
     @for (item of visibleItems; track item.path) {

@@ -1,5 +1,7 @@
 <header class="topbar">
-  <div></div>
+  <div>
+    <button class="topbar__menu-btn" (click)="menuToggle.emit()" aria-label="Toggle menu">☰</button>
+  </div>
   <div class="topbar__user">
     <span class="topbar__name">{{ auth.currentUser()?.name }}</span>
     <span class="topbar__role">{{ auth.currentUser()?.role }}</span>
